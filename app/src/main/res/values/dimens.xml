@@ -5,4 +5,7 @@
 
     <dimen name="numberSmallFontSize">50sp</dimen>
     <dimen name="numberBigFontSize">120sp</dimen>
+
+    <dimen name="listItemSmallFontSize">18sp</dimen>
+    <dimen name="listItemBigFontSize">24sp</dimen>
 </resources>

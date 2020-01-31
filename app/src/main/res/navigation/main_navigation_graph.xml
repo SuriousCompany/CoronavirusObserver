@@ -7,5 +7,20 @@
     <fragment
         android:id="@+id/statusFragment"
         android:name="company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusFragment"
-        android:label="StatusFragment" />
+        android:label="StatusFragment">
+        <action
+            android:id="@+id/action_statusFragment_to_statusByCountryFragment"
+            app:destination="@id/statusByCountryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusByCountryFragment"
+        android:name="company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusByCountryFragment"
+        android:label="StatusByCountryFragment">
+        <argument
+            android:name="entityStatus"
+            app:argType="company.surious.coronovirusobserver.domain.entities.StatusEntity" />
+        <argument
+            android:name="patientState"
+            app:argType="company.surious.coronovirusobserver.domain.entities.PatientState" />
+    </fragment>
 </navigation>

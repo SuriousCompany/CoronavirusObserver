@@ -9,7 +9,6 @@ import javax.inject.Inject
 
 class GoogleStatusRepository @Inject constructor(private val api: CoronovirusApi) :
     StatusRepository {
-    private val mapper = StatusMapper
     override fun getReportsOfSheet(sheetTitle: String): Single<StatusEntity> =
-        api.getStatus("values/$sheetTitle!A2:F1000").map(mapper::map)
+        api.getStatus("values/$sheetTitle!A2:F1000").map(StatusMapper::map)
 }

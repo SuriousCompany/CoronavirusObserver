@@ -56,7 +56,7 @@ object StatusMapper {
             text.toInt()
         }
 
-    private fun mapCountryStatuses(statuses: List<CountryStatusEntity>): Map<String, CountryStatusEntity> {
+    private fun mapCountryStatuses(statuses: List<CountryStatusEntity>): HashMap<String, CountryStatusEntity> {
         val res = HashMap<String, CountryStatusEntity>()
         statuses.forEach { status ->
             val existingCountryStatus = res[status.countryName]

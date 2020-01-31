@@ -35,6 +35,7 @@ class StatusViewModel @Inject constructor(
             infected.set(status.totalInfected)
             recovered.set(status.totalRecovered)
             isLoading.set(false)
+            statusEntity.set(status)
         }
     }
 
