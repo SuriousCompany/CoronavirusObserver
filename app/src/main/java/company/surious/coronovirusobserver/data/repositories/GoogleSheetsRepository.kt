@@ -1,4 +1,4 @@
-package company.surious.coronovirusobserver.data
+package company.surious.coronovirusobserver.data.repositories
 
 import company.surious.coronovirusobserver.data.network.CoronovirusApi
 import company.surious.coronovirusobserver.data.network.models.sheets.SheetType

@@ -1,11 +1,11 @@
 package company.surious.coronovirusobserver.data.di
 
-import company.surious.coronovirusobserver.data.GoogleSheetsRepository
 import company.surious.coronovirusobserver.data.network.CoronovirusApi
-import company.surious.coronovirusobserver.data.network.GoogleReportsRepository
 import company.surious.coronovirusobserver.data.network.RetrofitClient
-import company.surious.coronovirusobserver.domain.repositories.ReportsRepository
+import company.surious.coronovirusobserver.data.repositories.GoogleSheetsRepository
+import company.surious.coronovirusobserver.data.repositories.GoogleStatusRepository
 import company.surious.coronovirusobserver.domain.repositories.SheetsRepository
+import company.surious.coronovirusobserver.domain.repositories.StatusRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -28,11 +28,15 @@ object DataManagersModule {
     @Singleton
     @JvmStatic
     fun provideSheetsCoronovirusRepository(api: CoronovirusApi): SheetsRepository =
-        GoogleSheetsRepository(api)
+        GoogleSheetsRepository(
+            api
+        )
 
     @Provides
     @Singleton
     @JvmStatic
-    fun provideReportsRepository(api: CoronovirusApi): ReportsRepository =
-        GoogleReportsRepository(api)
+    fun provideReportsRepository(api: CoronovirusApi): StatusRepository =
+        GoogleStatusRepository(
+            api
+        )
 }

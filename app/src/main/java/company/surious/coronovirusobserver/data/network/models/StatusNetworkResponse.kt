@@ -1,5 +1,5 @@
 package company.surious.coronovirusobserver.data.network.models
 
-data class ReportsNetworkResponse(
+data class StatusNetworkResponse(
     var values: List<Array<String>> = ArrayList()
 )

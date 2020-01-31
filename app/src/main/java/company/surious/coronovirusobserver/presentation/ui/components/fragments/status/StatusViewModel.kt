@@ -31,9 +31,9 @@ class StatusViewModel @Inject constructor(
 
     private fun displayStatus(status: StatusEntity) {
         with(statusState) {
-            dead.set(status.dead)
-            infected.set(status.infected)
-            recovered.set(status.recovered)
+            dead.set(status.totalDead)
+            infected.set(status.totalInfected)
+            recovered.set(status.totalRecovered)
             isLoading.set(false)
         }
     }

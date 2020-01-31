@@ -1,6 +1,6 @@
 package company.surious.coronovirusobserver.data.network
 
-import company.surious.coronovirusobserver.data.network.models.ReportsNetworkResponse
+import company.surious.coronovirusobserver.data.network.models.StatusNetworkResponse
 import company.surious.coronovirusobserver.data.network.models.sheets.SheetsNetworkResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -13,6 +13,6 @@ interface CoronovirusApi {
     fun getSheets(@Query("fields") fields: String? = "sheets.properties"): Single<SheetsNetworkResponse>
 
     @GET
-    fun getReports(@Url path: String): Single<ReportsNetworkResponse>
+    fun getStatus(@Url path: String): Single<StatusNetworkResponse>
 
 }
