@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="labelSmallFontSize">24sp</dimen>
+    <dimen name="labelMediumFontSize">36sp</dimen>
+
+    <dimen name="numberSmallFontSize">50sp</dimen>
+    <dimen name="numberBigFontSize">120sp</dimen>
+</resources>
