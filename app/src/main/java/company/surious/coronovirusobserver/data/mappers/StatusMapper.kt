@@ -56,7 +56,7 @@ object StatusMapper {
             text.toInt()
         }
 
-    private fun mapCountryStatuses(statuses: List<CountryStatusEntity>): HashMap<String, CountryStatusEntity> {
+    private fun mapCountryStatuses(statuses: List<CountryStatusEntity>): ArrayList<CountryStatusEntity> {
         val res = HashMap<String, CountryStatusEntity>()
         statuses.forEach { status ->
             val existingCountryStatus = res[status.countryName]
@@ -69,7 +69,7 @@ object StatusMapper {
                 res.put(status.countryName, status)
             }
         }
-        return res
+        return ArrayList(res.values)
     }
 
 }

@@ -61,7 +61,7 @@ class StatusFragment : DaggerFragment() {
 
         fun onConfirmedClick() {
             findNavController().navigate(
-                StatusFragmentDirections.actionStatusFragmentToStatusByCountryFragment(
+                StatusFragmentDirections.actionStatusFragmentToStatusByPatientsStateFragment(
                     displayingStatusEntity,
                     PatientState.INFECTED
                 )
@@ -70,7 +70,7 @@ class StatusFragment : DaggerFragment() {
 
         fun onDeathsClick() {
             findNavController().navigate(
-                StatusFragmentDirections.actionStatusFragmentToStatusByCountryFragment(
+                StatusFragmentDirections.actionStatusFragmentToStatusByPatientsStateFragment(
                     displayingStatusEntity,
                     PatientState.DEAD
                 )
@@ -79,7 +79,7 @@ class StatusFragment : DaggerFragment() {
 
         fun onRecoveredClick() {
             findNavController().navigate(
-                StatusFragmentDirections.actionStatusFragmentToStatusByCountryFragment(
+                StatusFragmentDirections.actionStatusFragmentToStatusByPatientsStateFragment(
                     displayingStatusEntity,
                     PatientState.RECOVERED
                 )

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation_graph"
     app:startDestination="@id/statusFragment">
 
@@ -9,15 +10,18 @@
         android:name="company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusFragment"
         android:label="StatusFragment">
         <action
-            android:id="@+id/action_statusFragment_to_statusByCountryFragment"
-            app:destination="@id/statusByCountryFragment" />
+            android:id="@+id/action_statusFragment_to_statusByPatientsStateFragment"
+            app:destination="@id/statusByPatientsStateFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/statusFragment" />
     </fragment>
     <fragment
-        android:id="@+id/statusByCountryFragment"
-        android:name="company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusByCountryFragment"
-        android:label="StatusByCountryFragment">
+        android:id="@+id/statusByPatientsStateFragment"
+        android:name="company.surious.coronovirusobserver.presentation.ui.components.fragments.status.status_by_country.StatusByPatientsStateFragment"
+        android:label="fragment_status_by_patients_state"
+        tools:layout="@layout/fragment_status_by_patients_state">
         <argument
-            android:name="entityStatus"
+            android:name="statusEntity"
             app:argType="company.surious.coronovirusobserver.domain.entities.StatusEntity" />
         <argument
             android:name="patientState"

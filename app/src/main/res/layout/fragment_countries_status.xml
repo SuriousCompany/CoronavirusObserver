@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.components.fragments.status.StatusByCountryFragment">
+        tools:context=".presentation.ui.components.fragments.status.status_by_country.CountriesStatusFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/statusByPatientStateRecyclerView"
