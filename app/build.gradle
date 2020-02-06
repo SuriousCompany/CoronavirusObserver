@@ -17,8 +17,7 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "GOOGLE_API_KEY", "${project.GoolgeAPIKey}"
-        buildConfigField "String", "SERVER_URL", '"https://sheets.googleapis.com/v4/spreadsheets/1yZv9w9zRKwrGTaR-YzmAqMefw4wMlaXocejdxZaTs6w/"'
+        buildConfigField "String", "SERVER_URL", '"https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/Coronavirus_2019_nCoV_Cases/FeatureServer/"'
     }
     buildTypes {
         release {

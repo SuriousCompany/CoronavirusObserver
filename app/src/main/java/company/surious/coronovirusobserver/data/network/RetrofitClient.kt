@@ -21,21 +21,10 @@ class RetrofitClient {
 
     private fun createOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
-            .addInterceptor(createQueryInterceptor())
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(createLoggingInterceptor())
         }
         return builder.build()
-    }
-
-    private fun createQueryInterceptor(): Interceptor = Interceptor {
-        val original = it.request()
-        val originalUrl = original.url()
-        val modifiedUrl = originalUrl.newBuilder()
-            .addQueryParameter("key", BuildConfig.GOOGLE_API_KEY)
-            .build()
-        val modifiedRequest = original.newBuilder().url(modifiedUrl).build()
-        it.proceed(modifiedRequest)
     }
 
     private fun createLoggingInterceptor(): Interceptor =

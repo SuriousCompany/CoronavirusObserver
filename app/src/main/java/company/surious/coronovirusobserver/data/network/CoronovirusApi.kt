@@ -1,18 +1,12 @@
 package company.surious.coronovirusobserver.data.network
 
 import company.surious.coronovirusobserver.data.network.models.StatusNetworkResponse
-import company.surious.coronovirusobserver.data.network.models.sheets.SheetsNetworkResponse
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.Url
 
 interface CoronovirusApi {
 
-    @GET(".")
-    fun getSheets(@Query("fields") fields: String? = "sheets.properties"): Single<SheetsNetworkResponse>
-
-    @GET
-    fun getStatus(@Url path: String): Single<StatusNetworkResponse>
+    @GET("2/query?where=OBJECTID%3E0&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&resultType=tile&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=Last_Update%2C+Country_Region%2C+Confirmed%2C+Deaths%2C+Recovered&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson")
+    fun getStatus(): Single<StatusNetworkResponse>
 
 }

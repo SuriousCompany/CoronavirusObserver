@@ -2,9 +2,7 @@ package company.surious.coronovirusobserver.data.di
 
 import company.surious.coronovirusobserver.data.network.CoronovirusApi
 import company.surious.coronovirusobserver.data.network.RetrofitClient
-import company.surious.coronovirusobserver.data.repositories.GoogleSheetsRepository
-import company.surious.coronovirusobserver.data.repositories.GoogleStatusRepository
-import company.surious.coronovirusobserver.domain.repositories.SheetsRepository
+import company.surious.coronovirusobserver.data.repositories.StatusRepositoryImpl
 import company.surious.coronovirusobserver.domain.repositories.StatusRepository
 import dagger.Module
 import dagger.Provides
@@ -27,16 +25,5 @@ object DataManagersModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun provideSheetsCoronovirusRepository(api: CoronovirusApi): SheetsRepository =
-        GoogleSheetsRepository(
-            api
-        )
-
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideReportsRepository(api: CoronovirusApi): StatusRepository =
-        GoogleStatusRepository(
-            api
-        )
+    fun provideReportsRepository(api: CoronovirusApi): StatusRepository = StatusRepositoryImpl(api)
 }

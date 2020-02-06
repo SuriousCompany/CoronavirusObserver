@@ -7,8 +7,8 @@ import company.surious.coronovirusobserver.domain.repositories.StatusRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GoogleStatusRepository @Inject constructor(private val api: CoronovirusApi) :
+class StatusRepositoryImpl @Inject constructor(private val api: CoronovirusApi) :
     StatusRepository {
-    override fun getReportsOfSheet(sheetTitle: String): Single<StatusEntity> =
-        api.getStatus("values/$sheetTitle!A2:F1000").map(StatusMapper::map)
+    override fun getStatus(): Single<StatusEntity> =
+        api.getStatus().map(StatusMapper::map)
 }
