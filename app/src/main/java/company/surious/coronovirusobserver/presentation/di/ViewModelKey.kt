@@ -1,4 +1,4 @@
-package company.surious.mediator_presentation.di
+package company.surious.coronovirusobserver.presentation.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

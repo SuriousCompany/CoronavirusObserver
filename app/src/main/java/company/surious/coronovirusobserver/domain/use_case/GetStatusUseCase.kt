@@ -2,7 +2,7 @@ package company.surious.coronovirusobserver.domain.use_case
 
 import company.surious.coronovirusobserver.domain.entities.StatusEntity
 import company.surious.coronovirusobserver.domain.repositories.StatusRepository
-import company.surious.mediator_domain.use_cases.base.SingleUseCase
+import company.surious.coronovirusobserver.domain.use_case.base.SingleUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 

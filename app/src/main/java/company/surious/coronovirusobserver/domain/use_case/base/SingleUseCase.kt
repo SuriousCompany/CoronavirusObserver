@@ -1,4 +1,4 @@
-package company.surious.mediator_domain.use_cases.base
+package company.surious.coronovirusobserver.domain.use_case.base
 
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers

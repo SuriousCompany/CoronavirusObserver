@@ -8,4 +8,8 @@
 
     <dimen name="listItemSmallFontSize">18sp</dimen>
     <dimen name="listItemBigFontSize">24sp</dimen>
+
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widgetNumberBigFontSize">24sp</dimen>
+    <dimen name="widgetNumberSmallFontSize">16sp</dimen>
 </resources>

@@ -12,8 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".presentation.ui.components.services.update_status_service.UpdateStatusService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <receiver android:name=".presentation.ui.components.widget.CoronaWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/corona_widget_info" />
+        </receiver>
+
         <activity
-            android:name="company.surious.coronovirusobserver.presentation.ui.components.activities.main.MainActivity"
+            android:name=".presentation.ui.components.activities.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
