@@ -1,6 +1,6 @@
 package company.surious.coronovirusobserver.presentation.di
 
-import company.surious.coronovirusobserver.presentation.ui.components.services.update_status_service.UpdateStatusService
+import company.surious.coronovirusobserver.presentation.ui.components.services.update_status_service.StatusService
 import company.surious.coronovirusobserver.presentation.ui.components.services.update_status_service.UpdateStatusServiceComponent
 import dagger.Binds
 import dagger.Module
@@ -12,6 +12,6 @@ import dagger.multibindings.IntoMap
 interface ServiceModule {
     @Binds
     @IntoMap
-    @ClassKey(UpdateStatusService::class)
+    @ClassKey(StatusService::class)
     fun bindUpdateStatusService(builder: UpdateStatusServiceComponent.Builder): AndroidInjector.Factory<*>
 }
