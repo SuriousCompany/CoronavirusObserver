@@ -1,5 +1,6 @@
 package company.surious.coronovirusobserver.presentation.ui.components.widget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
@@ -9,6 +10,7 @@ import android.widget.RemoteViews
 import androidx.core.content.ContextCompat
 import company.surious.coronovirusobserver.R
 import company.surious.coronovirusobserver.domain.entities.StatusEntity
+import company.surious.coronovirusobserver.presentation.ui.components.activities.main.MainActivity
 import company.surious.coronovirusobserver.presentation.ui.components.services.update_status_service.StatusService
 
 
@@ -72,13 +74,20 @@ class CoronaWidget : AppWidgetProvider() {
         appWidgetId: Int,
         status: StatusEntity
     ) {
-        val views = RemoteViews(context.packageName, R.layout.corona_widget)
-        views.setTextViewText(R.id.confirmedWidgetTextView, status.totalInfected.toString())
-        views.setTextViewText(R.id.deadWidgetTextView, status.totalDead.toString())
-        views.setTextViewText(
-            R.id.recoveredWidgetTextView,
-            status.totalRecovered.toString()
-        )
+        val pendingIntent: PendingIntent = Intent(context, MainActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            .let { intent ->
+                PendingIntent.getActivity(context, 0, intent, 0)
+            }
+        val views = RemoteViews(context.packageName, R.layout.corona_widget).apply {
+            setTextViewText(R.id.confirmedWidgetTextView, status.totalInfected.toString())
+            setTextViewText(R.id.deadWidgetTextView, status.totalDead.toString())
+            setTextViewText(
+                R.id.recoveredWidgetTextView,
+                status.totalRecovered.toString()
+            )
+            setOnClickPendingIntent(R.id.widgetRoot, pendingIntent)
+        }
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }
 
