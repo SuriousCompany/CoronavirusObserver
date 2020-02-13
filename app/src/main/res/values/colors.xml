@@ -8,6 +8,7 @@
     <color name="colorGreen">#70AA25</color>
 
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorDisabledGray">#808080</color>
     <color name="colorLightGray">#BDBDBD</color>
     <color name="colorDarkGray">#222222</color>
     <color name="colorBlack">#000000</color>

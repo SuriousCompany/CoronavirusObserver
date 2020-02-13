@@ -1,4 +1,4 @@
-package company.surious.coronovirusobserver.presentation.ui.components.fragments.status.status_by_country
+package company.surious.coronovirusobserver.presentation.ui.components.fragments.countries_status
 
 import android.view.LayoutInflater
 import android.view.View

@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/statusByPatientsStateFragment"
-        android:name="company.surious.coronovirusobserver.presentation.ui.components.fragments.status.status_by_country.StatusByPatientsStateFragment"
+        android:name="company.surious.coronovirusobserver.presentation.ui.components.fragments.countries_status.StatusByPatientsStateFragment"
         android:label="fragment_status_by_patients_state"
         tools:layout="@layout/fragment_status_by_patients_state">
         <argument
@@ -27,4 +27,23 @@
             android:name="patientState"
             app:argType="company.surious.coronovirusobserver.domain.entities.PatientState" />
     </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="company.surious.coronovirusobserver.presentation.ui.components.fragments.news.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
+    <action
+        android:id="@+id/action_global_statusByPatientsStateFragment"
+        app:destination="@id/statusByPatientsStateFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/statusFragment" />
+    <action
+        android:id="@+id/action_global_newsFragment"
+        app:destination="@id/newsFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/statusFragment" />
+    <action
+        android:id="@+id/action_global_statusFragment"
+        app:destination="@id/statusFragment"
+        app:launchSingleTop="true" />
 </navigation>

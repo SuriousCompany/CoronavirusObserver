@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.ui.components.fragments.status.status_by_country.StatusByPatientsStateFragment">
+    tools:context=".presentation.ui.components.fragments.countries_status.StatusByPatientsStateFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/statusTabLayout"

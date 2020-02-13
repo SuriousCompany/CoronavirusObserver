@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/chartNavigationItem"
+        android:icon="@drawable/ic_chart_white"
+        android:title="@string/chart" />
+    <item
+        android:id="@+id/countriesNavigationItem"
+        android:icon="@drawable/ic_country_white"
+        android:title="@string/countries" />
+    <item
+        android:id="@+id/homeNavigationItem"
+        android:icon="@drawable/ic_home_white"
+        android:title="@string/main_screen" />
+
+    <item
+        android:id="@+id/newsNavigationItem"
+        android:icon="@drawable/ic_newspaper_white"
+        android:title="@string/news" />
+
+    <item
+        android:id="@+id/settingsNavigationItem"
+        android:icon="@drawable/ic_settings_white"
+        android:title="@string/settings" />
+</menu>
