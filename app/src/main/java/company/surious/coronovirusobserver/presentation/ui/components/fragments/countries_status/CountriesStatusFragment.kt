@@ -16,22 +16,6 @@ class CountriesStatusFragment : Fragment() {
     private val adapter =
         StatusByCountryAdapter()
 
-    companion object {
-        private const val STATUS_KEY = "status"
-        private const val PATIENT_STATE_KEY = "patientState"
-
-        fun newInstance(
-            statusEntity: StatusEntity,
-            patientState: PatientState
-        ): CountriesStatusFragment =
-            CountriesStatusFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(STATUS_KEY, statusEntity)
-                    putString(PATIENT_STATE_KEY, patientState.toString())
-                }
-            }
-    }
-
     private lateinit var statusEntity: StatusEntity
     private lateinit var patientState: PatientState
 
@@ -55,5 +39,21 @@ class CountriesStatusFragment : Fragment() {
         statusByPatientStateRecyclerView.layoutManager = LinearLayoutManager(context)
         statusByPatientStateRecyclerView.adapter = adapter
         adapter.updateData(StatusByCountryMapper.map(statusEntity, patientState))
+    }
+
+    companion object {
+        private const val STATUS_KEY = "status"
+        private const val PATIENT_STATE_KEY = "patientState"
+
+        fun newInstance(
+            statusEntity: StatusEntity,
+            patientState: PatientState
+        ): CountriesStatusFragment =
+            CountriesStatusFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(STATUS_KEY, statusEntity)
+                    putString(PATIENT_STATE_KEY, patientState.toString())
+                }
+            }
     }
 }

@@ -6,17 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import androidx.databinding.Observable
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import company.surious.coronovirusobserver.R
+import company.surious.coronovirusobserver.presentation.ui.base.ViewModelFactory
+import company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusViewModel
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_status_by_patients_state.*
+import javax.inject.Inject
 
-//todo implement data refreshing
-class StatusByPatientsStateFragment : Fragment() {
+class StatusByPatientsStateFragment : DaggerFragment() {
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private val args: StatusByPatientsStateFragmentArgs by navArgs()
+
+    private lateinit var statusViewModel: StatusViewModel
+    private lateinit var statusCallback: Observable.OnPropertyChangedCallback
     private lateinit var adapter: StatusByPatientsStatePageAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +37,9 @@ class StatusByPatientsStateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        statusViewModel = ViewModelProvider(this, viewModelFactory)[StatusViewModel::class.java]
         adapter = StatusByPatientsStatePageAdapter(
             childFragmentManager,
-            args.statusEntity,
             arrayOf(
                 getString(R.string.confirmed),
                 getString(R.string.dead),
@@ -37,6 +47,28 @@ class StatusByPatientsStateFragment : Fragment() {
             )
         )
         setupPager()
+        initStatus()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        statusCallback = object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                adapter.update(statusViewModel.statusState.statusEntity.get()!!)
+            }
+        }
+        statusViewModel.statusState.statusEntity.addOnPropertyChangedCallback(statusCallback)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        statusViewModel.statusState.statusEntity.removeOnPropertyChangedCallback(statusCallback)
+    }
+
+    private fun initStatus() {
+        args.statusEntity?.let { adapter.update(it) } ?: run {
+            statusViewModel.updateStatus()
+        }
     }
 
     private fun setupPager() {

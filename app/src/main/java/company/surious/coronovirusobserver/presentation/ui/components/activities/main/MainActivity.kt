@@ -3,13 +3,16 @@ package company.surious.coronovirusobserver.presentation.ui.components.activitie
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.navigation.findNavController
+import company.surious.coronovirusobserver.MainNavigationGraphDirections
 import company.surious.coronovirusobserver.R
+import company.surious.coronovirusobserver.domain.entities.PatientState
+import company.surious.coronovirusobserver.domain.entities.StatusEntity
 import company.surious.coronovirusobserver.presentation.ui.base.showWillBeImplementedToast
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,8 +71,15 @@ class MainActivity : DaggerAppCompatActivity() {
         findNavController(mainNavigationHost.id).navigate(R.id.action_global_newsFragment)
     }
 
-    private fun showCountriesFragment() {
+    override fun showCountriesFragment() {
         findNavController(mainNavigationHost.id).navigate(R.id.action_global_statusByPatientsStateFragment)
     }
 
+    override fun showCountriesFragment(statusEntity: StatusEntity, patientState: PatientState) {
+        val action = MainNavigationGraphDirections.actionGlobalStatusByPatientsStateFragment(
+            statusEntity,
+            patientState
+        )
+        findNavController(mainNavigationHost.id).navigate(action)
+    }
 }

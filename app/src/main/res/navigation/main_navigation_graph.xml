@@ -22,9 +22,12 @@
         tools:layout="@layout/fragment_status_by_patients_state">
         <argument
             android:name="statusEntity"
+            android:defaultValue="@null"
+            app:nullable="true"
             app:argType="company.surious.coronovirusobserver.domain.entities.StatusEntity" />
         <argument
             android:name="patientState"
+            android:defaultValue="INFECTED"
             app:argType="company.surious.coronovirusobserver.domain.entities.PatientState" />
     </fragment>
     <fragment
@@ -36,7 +39,17 @@
         android:id="@+id/action_global_statusByPatientsStateFragment"
         app:destination="@id/statusByPatientsStateFragment"
         app:launchSingleTop="true"
-        app:popUpTo="@id/statusFragment" />
+        app:popUpTo="@id/statusFragment">
+        <argument
+            android:name="statusEntity"
+            android:defaultValue="@null"
+            app:argType="company.surious.coronovirusobserver.domain.entities.StatusEntity"
+            app:nullable="true" />
+        <argument
+            android:name="patientState"
+            android:defaultValue="INFECTED"
+            app:argType="company.surious.coronovirusobserver.domain.entities.PatientState" />
+    </action>
     <action
         android:id="@+id/action_global_newsFragment"
         app:destination="@id/newsFragment"

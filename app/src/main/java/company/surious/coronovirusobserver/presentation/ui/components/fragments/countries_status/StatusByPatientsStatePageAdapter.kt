@@ -8,25 +8,27 @@ import company.surious.coronovirusobserver.domain.entities.StatusEntity
 
 class StatusByPatientsStatePageAdapter(
     fragmentManager: FragmentManager,
-    private val statusEntity: StatusEntity,
     private val tabNames: Array<String>
 ) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     val states = arrayOf(PatientState.INFECTED, PatientState.DEAD, PatientState.RECOVERED)
     private val data = ArrayList<CountriesStatusFragment>()
+    private var dataCount = 0
 
-    init {
+    fun update(statusEntity: StatusEntity) {
         states.forEach {
-            data.add(generateFragment(it))
+            data.add(generateFragment(statusEntity, it))
         }
+        dataCount = states.size
+        notifyDataSetChanged()
     }
 
-    private fun generateFragment(patientState: PatientState) =
+    private fun generateFragment(statusEntity: StatusEntity, patientState: PatientState) =
         CountriesStatusFragment.newInstance(statusEntity, patientState)
 
     override fun getItem(position: Int): Fragment = data[position]
 
-    override fun getCount(): Int = states.size
+    override fun getCount(): Int = dataCount
 
     override fun getPageTitle(position: Int): CharSequence? = tabNames[position]
 

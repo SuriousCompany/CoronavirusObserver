@@ -14,6 +14,7 @@ import company.surious.coronovirusobserver.databinding.FragmentStatusBinding
 import company.surious.coronovirusobserver.domain.entities.PatientState
 import company.surious.coronovirusobserver.domain.entities.StatusEntity
 import company.surious.coronovirusobserver.presentation.ui.base.ViewModelFactory
+import company.surious.coronovirusobserver.presentation.ui.components.activities.main.NavigationProvider
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -25,6 +26,7 @@ class StatusFragment : DaggerFragment() {
     private lateinit var statusViewModel: StatusViewModel
     private lateinit var binding: FragmentStatusBinding
     private lateinit var displayingStatusEntity: StatusEntity
+    private lateinit var navigationProvider: NavigationProvider
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,7 @@ class StatusFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navigationProvider = requireActivity() as NavigationProvider
         initView()
     }
 
@@ -78,6 +81,7 @@ class StatusFragment : DaggerFragment() {
         }
 
         fun onRecoveredClick() {
+            navigationProvider.showCountriesFragment()
             findNavController().navigate(
                 StatusFragmentDirections.actionStatusFragmentToStatusByPatientsStateFragment(
                     displayingStatusEntity,
