@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import company.surious.coronovirusobserver.R
 import company.surious.coronovirusobserver.domain.use_case.GetStatusUseCase
 import company.surious.coronovirusobserver.presentation.ui.components.activities.main.MainActivity
-import company.surious.coronovirusobserver.presentation.ui.components.widget.CoronaWidget
+import company.surious.coronovirusobserver.presentation.ui.components.widget.WidgetUtils
 import dagger.android.DaggerService
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
@@ -59,9 +59,7 @@ class StatusService : DaggerService() {
         disposable?.dispose()
         disposable = getStatusUseCase.execute(null).subscribe(
             { status ->
-                val widgetIntent = Intent(this, CoronaWidget::class.java)
-                widgetIntent.putExtra(CoronaWidget.STATUS_KEY, status)
-                sendBroadcast(widgetIntent)
+                WidgetUtils.updateWidget(this, status)
                 stop()
             },
             {

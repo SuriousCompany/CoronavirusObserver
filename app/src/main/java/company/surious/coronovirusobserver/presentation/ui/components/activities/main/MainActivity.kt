@@ -21,10 +21,16 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
     }
 
     private fun initNavigationView() {
-        with(bottomNavigationView) {
-            selectedItemId = R.id.homeNavigationItem
-            setOnNavigationItemSelectedListener(::handleNavigationItemSelected)
-        }
+        bottomNavigationView.selectedItemId = R.id.homeNavigationItem
+        enableNavigationListener()
+    }
+
+    private fun enableNavigationListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(::handleNavigationItemSelected)
+    }
+
+    private fun disableNavigationListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(null)
     }
 
     private fun handleNavigationItemSelected(item: MenuItem): Boolean {
@@ -76,10 +82,13 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
     }
 
     override fun showCountriesFragment(statusEntity: StatusEntity, patientState: PatientState) {
+        disableNavigationListener()
+        bottomNavigationView.selectedItemId = R.id.countriesNavigationItem
         val action = MainNavigationGraphDirections.actionGlobalStatusByPatientsStateFragment(
             statusEntity,
             patientState
         )
         findNavController(mainNavigationHost.id).navigate(action)
+        enableNavigationListener()
     }
 }
