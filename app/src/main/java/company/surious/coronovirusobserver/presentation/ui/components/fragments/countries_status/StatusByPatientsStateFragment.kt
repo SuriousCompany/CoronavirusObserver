@@ -46,8 +46,8 @@ class StatusByPatientsStateFragment : DaggerFragment() {
                 getString(R.string.recovered)
             )
         )
-        setupPager()
         initStatus()
+        setupPager()
     }
 
     override fun onStart() {
