@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.Observable
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
 import company.surious.coronovirusobserver.R
+import company.surious.coronovirusobserver.domain.entities.PatientState
 import company.surious.coronovirusobserver.presentation.ui.base.ViewModelFactory
 import company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusViewModel
 import dagger.android.support.DaggerFragment
@@ -21,12 +22,10 @@ class StatusByPatientsStateFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val args: StatusByPatientsStateFragmentArgs by navArgs()
-
     private lateinit var statusViewModel: StatusViewModel
     private lateinit var statusCallback: Observable.OnPropertyChangedCallback
     private lateinit var adapter: StatusByPatientsStatePageAdapter
-
+    private var currentPatientState = PatientState.INFECTED
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +45,14 @@ class StatusByPatientsStateFragment : DaggerFragment() {
                 getString(R.string.recovered)
             )
         )
-        initStatus()
         setupPager()
+    }
+
+    fun showState(patientState: PatientState) {
+        currentPatientState = patientState
+        if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+            updateState()
+        }
     }
 
     override fun onStart() {
@@ -58,6 +63,13 @@ class StatusByPatientsStateFragment : DaggerFragment() {
             }
         }
         statusViewModel.statusState.statusEntity.addOnPropertyChangedCallback(statusCallback)
+        updateState()
+    }
+
+    private fun updateState() {
+        if (adapter.states[statusViewPager.currentItem] != currentPatientState) {
+            statusViewPager.currentItem = adapter.states.indexOf(currentPatientState)
+        }
     }
 
     override fun onStop() {
@@ -65,17 +77,8 @@ class StatusByPatientsStateFragment : DaggerFragment() {
         statusViewModel.statusState.statusEntity.removeOnPropertyChangedCallback(statusCallback)
     }
 
-    private fun initStatus() {
-        args.statusEntity?.let { adapter.update(it) } ?: run {
-            statusViewModel.updateStatus()
-        }
-    }
-
     private fun setupPager() {
         statusViewPager.adapter = adapter
-        val selectedPosition = adapter.states.indexOf(args.patientState)
-        statusViewPager.currentItem = selectedPosition
-        updateTabColors(selectedPosition)
         statusTabLayout.setupWithViewPager(statusViewPager)
         statusViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}

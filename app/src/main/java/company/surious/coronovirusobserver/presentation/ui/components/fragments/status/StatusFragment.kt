@@ -65,15 +65,15 @@ class StatusFragment : DaggerFragment() {
         }
 
         fun onConfirmedClick() {
-            navigationProvider.showCountriesFragment(displayingStatusEntity, PatientState.INFECTED)
+            navigationProvider.showCountriesFragment(PatientState.INFECTED)
         }
 
         fun onDeathsClick() {
-            navigationProvider.showCountriesFragment(displayingStatusEntity, PatientState.DEAD)
+            navigationProvider.showCountriesFragment(PatientState.DEAD)
         }
 
         fun onRecoveredClick() {
-            navigationProvider.showCountriesFragment(displayingStatusEntity, PatientState.RECOVERED)
+            navigationProvider.showCountriesFragment(PatientState.RECOVERED)
         }
     }
 }

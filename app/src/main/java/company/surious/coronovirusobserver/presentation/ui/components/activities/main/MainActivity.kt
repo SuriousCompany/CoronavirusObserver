@@ -2,22 +2,43 @@ package company.surious.coronovirusobserver.presentation.ui.components.activitie
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.navigation.findNavController
-import company.surious.coronovirusobserver.MainNavigationGraphDirections
+import androidx.fragment.app.Fragment
 import company.surious.coronovirusobserver.R
 import company.surious.coronovirusobserver.domain.entities.PatientState
-import company.surious.coronovirusobserver.domain.entities.StatusEntity
 import company.surious.coronovirusobserver.presentation.ui.base.showWillBeImplementedToast
+import company.surious.coronovirusobserver.presentation.ui.components.fragments.countries_status.StatusByPatientsStateFragment
+import company.surious.coronovirusobserver.presentation.ui.components.fragments.news.NewsFragment
+import company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
 
+    private val patientsStateFragment = StatusByPatientsStateFragment()
+    private val statusFragment = StatusFragment()
+    private val newsFragment = NewsFragment()
+
+    private lateinit var displayingFragment: Fragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initNavigationView()
+        initFragments()
+    }
+
+    private fun initFragments() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.mainNavigationContainer, patientsStateFragment)
+            .hide(patientsStateFragment)
+            .add(R.id.mainNavigationContainer, newsFragment)
+            .hide(newsFragment)
+            .commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.mainNavigationContainer, statusFragment)
+            .commit()
+        displayingFragment = statusFragment
     }
 
     private fun initNavigationView() {
@@ -42,19 +63,20 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
                     false
                 }
                 R.id.countriesNavigationItem -> {
-                    showCountriesFragment()
+                    switchFragment(patientsStateFragment)
                     true
                 }
                 R.id.homeNavigationItem -> {
-                    showHomeFragment()
+                    switchFragment(statusFragment)
                     true
                 }
                 R.id.newsNavigationItem -> {
-                    showNewsFragment()
+                    switchFragment(newsFragment)
                     true
                 }
                 R.id.settingsNavigationItem -> {
-                    true
+                    showWillBeImplementedToast()
+                    false
                 }
                 else -> {
                     throw IllegalArgumentException("Unknown navigation item:" + item.title)
@@ -65,30 +87,29 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
         }
     }
 
-    private fun showHomeFragment() {
-        findNavController(mainNavigationHost.id).navigate(R.id.action_global_statusFragment)
+    private fun switchFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .hide(displayingFragment)
+            .show(fragment)
+            .commit()
+        displayingFragment = fragment
     }
 
-    private fun showSettingsFragment() {
-
-    }
-
-    private fun showNewsFragment() {
-        findNavController(mainNavigationHost.id).navigate(R.id.action_global_newsFragment)
-    }
-
-    override fun showCountriesFragment() {
-        findNavController(mainNavigationHost.id).navigate(R.id.action_global_statusByPatientsStateFragment)
-    }
-
-    override fun showCountriesFragment(statusEntity: StatusEntity, patientState: PatientState) {
+    override fun showCountriesFragment(patientState: PatientState) {
+        if (displayingFragment !is StatusByPatientsStateFragment) {
+            switchFragment(patientsStateFragment)
+        }
+        patientsStateFragment.showState(patientState)
         disableNavigationListener()
         bottomNavigationView.selectedItemId = R.id.countriesNavigationItem
-        val action = MainNavigationGraphDirections.actionGlobalStatusByPatientsStateFragment(
-            statusEntity,
-            patientState
-        )
-        findNavController(mainNavigationHost.id).navigate(action)
         enableNavigationListener()
+    }
+
+    override fun onBackPressed() {
+        if (displayingFragment is StatusFragment) {
+            super.onBackPressed()
+        } else {
+            bottomNavigationView.selectedItemId = R.id.homeNavigationItem
+        }
     }
 }
