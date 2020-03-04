@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">CoronovirusObserver</string>
-    <string name="total_deaths">Total Deaths</string>
-    <string name="total_confirmed">Total Confirmed</string>
-    <string name="total_recovered">Total Recovered</string>
+    <string name="total_deaths">Deaths</string>
+    <string name="total_confirmed">Confirmed</string>
+    <string name="total_recovered">Recovered</string>
     <string name="zero">0</string>
     <string name="update">update</string>
 
