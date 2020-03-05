@@ -16,5 +16,7 @@ object StatusByCountryMapper {
                 count,
                 countryStatus.countryName
             )
-        }.filter { it.count != 0 }.sortedByDescending { it.count }
+        }.filter { it.count != 0 }.sortedByDescending {
+            it.count
+        }.sortedWith(StatusByCountryModelComparator)
 }
