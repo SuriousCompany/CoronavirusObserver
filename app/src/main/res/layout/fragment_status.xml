@@ -42,35 +42,43 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/confirmedLabelTextView"
                             android:layout_width="wrap_content"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/total_confirmed"
                             android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/labelMediumFontSize" />
+                            android:textSize="@dimen/labelMediumFontSize"
+                            app:layout_constraintBottom_toTopOf="@id/confirmedValueTextView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/confirmedValueTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginHorizontal="8dp"
-                            android:gravity="top|center_horizontal"
-                            android:lines="1"
-                            app:autoSizeTextType="uniform"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="@{`` + stateModel.infected}"
                             android:textColor="@color/colorWhite"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/confirmedLabelTextView"
                             tools:text="1111" />
-                    </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -88,35 +96,43 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/infectedCardView">
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/deathsLabelTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
+                            android:layout_marginTop="16dp"
                             android:layout_gravity="center_horizontal"
-                            android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/total_deaths"
                             android:textColor="@color/colorRed"
-                            android:textSize="@dimen/labelSmallFontSize" />
+                            android:textSize="@dimen/labelSmallFontSize"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/deathsValueTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginHorizontal="8dp"
                             android:gravity="center"
-                            android:layout_weight="1"
                             android:lines="1"
                             android:text="@{`` + stateModel.dead}"
                             android:textColor="@color/colorRed"
                             app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/deathsLabelTextView"
                             tools:text="1111" />
-                    </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -133,25 +149,32 @@
                     app:layout_constraintStart_toEndOf="@id/deadCardView"
                     app:layout_constraintTop_toTopOf="@id/deadCardView">
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/recoveredLabelTextView"
                             android:layout_width="wrap_content"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/total_recovered"
                             android:textColor="@color/colorGreen"
-                            android:textSize="@dimen/labelSmallFontSize" />
+                            android:textSize="@dimen/labelSmallFontSize"
+                            app:layout_constraintBottom_toTopOf="@id/recoveredValueTextView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/recoveredValueTextView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
                             android:gravity="center"
@@ -159,8 +182,12 @@
                             android:text="@{`` + stateModel.recovered}"
                             android:textColor="@color/colorGreen"
                             app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/recoveredLabelTextView"
                             tools:text="1111" />
-                    </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
