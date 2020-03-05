@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/chartNavigationItem"
-        android:icon="@drawable/ic_chart_white"
-        android:title="@string/chart" />
+        android:id="@+id/mapNavigationItem"
+        android:icon="@drawable/ic_map_white"
+        android:title="@string/map" />
     <item
         android:id="@+id/countriesNavigationItem"
         android:icon="@drawable/ic_country_white"

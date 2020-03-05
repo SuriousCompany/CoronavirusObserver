@@ -58,7 +58,7 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
         val isDuplicateClick = bottomNavigationView.selectedItemId == item.itemId
         return if (!isDuplicateClick) {
             when (item.itemId) {
-                R.id.chartNavigationItem -> {
+                R.id.mapNavigationItem -> {
                     showWillBeImplementedToast()
                     false
                 }
