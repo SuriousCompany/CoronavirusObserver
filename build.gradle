@@ -17,7 +17,6 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath "com.google.gms:google-services:$googleServicesVersion"
         classpath "com.google.firebase:firebase-crashlytics-gradle:$firebaseCrashlyticsGradleVersion"
         classpath "io.fabric.tools:gradle:$fabricVersion"
@@ -45,6 +44,7 @@ ext {
     legacySupportV4Version = '1.0.0'
     firebaseAnalyticsVersion = '17.2.3'
     firebaseCrashlyticsVersion = '2.10.1'
+    materialVersion = '1.1.0'
 
     compileSdkVersion = 28
     minSdkVersion = 16
