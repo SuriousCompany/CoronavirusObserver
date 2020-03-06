@@ -7,7 +7,7 @@
 
         <variable
             name="statusModel"
-            type="company.surious.coronovirusobserver.presentation.ui.components.fragments.countries_status.StatusByCountryModel" />
+            type="company.surious.coronavirusobserver.presentation.ui.components.fragments.countries_status.StatusByCountryModel" />
     </data>
 
     <androidx.cardview.widget.CardView

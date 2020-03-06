@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="company.surious.coronovirusobserver">
+    package="company.surious.coronavirusobserver">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".presentation.core.CoronovirusApplication"
+        android:name="company.surious.coronavirusobserver.presentation.core.CoronavirusApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,11 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".presentation.ui.components.services.update_status_service.StatusService"
+            android:name="company.surious.coronavirusobserver.presentation.ui.components.services.update_status_service.StatusService"
             android:enabled="true"
             android:exported="true"></service>
 
-        <receiver android:name=".presentation.ui.components.widget.CoronaWidget">
+        <receiver android:name="company.surious.coronavirusobserver.presentation.ui.components.widget.CoronaWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -29,7 +29,7 @@
         </receiver>
 
         <activity
-            android:name=".presentation.ui.components.activities.main.MainActivity"
+            android:name="company.surious.coronavirusobserver.presentation.ui.components.activities.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

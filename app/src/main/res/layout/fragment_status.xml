@@ -6,11 +6,11 @@
 
         <variable
             name="eventHandler"
-            type="company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusFragment.StatusEventHandler" />
+            type="company.surious.coronavirusobserver.presentation.ui.components.fragments.status.StatusFragment.StatusEventHandler" />
 
         <variable
             name="stateModel"
-            type="company.surious.coronovirusobserver.presentation.ui.components.fragments.status.StatusState" />
+            type="company.surious.coronavirusobserver.presentation.ui.components.fragments.status.StatusState" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
