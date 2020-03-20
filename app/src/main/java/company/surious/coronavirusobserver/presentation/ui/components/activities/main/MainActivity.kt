@@ -8,6 +8,7 @@ import company.surious.coronavirusobserver.domain.entities.PatientState
 import company.surious.coronavirusobserver.presentation.ui.base.showWillBeImplementedToast
 import company.surious.coronavirusobserver.presentation.ui.components.fragments.countries_status.StatusByPatientsStateFragment
 import company.surious.coronavirusobserver.presentation.ui.components.fragments.news.NewsFragment
+import company.surious.coronavirusobserver.presentation.ui.components.fragments.settings.SettingsFragment
 import company.surious.coronavirusobserver.presentation.ui.components.fragments.status.StatusFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,7 +19,7 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
     private val patientsStateFragment = StatusByPatientsStateFragment()
     private val statusFragment = StatusFragment()
     private val newsFragment = NewsFragment()
-
+    private val settingsFragment = SettingsFragment()
     private lateinit var displayingFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +35,8 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
             .hide(patientsStateFragment)
             .add(R.id.mainNavigationContainer, newsFragment)
             .hide(newsFragment)
+            .add(R.id.mainNavigationContainer, settingsFragment)
+            .hide(settingsFragment)
             .commit()
         supportFragmentManager.beginTransaction()
             .add(R.id.mainNavigationContainer, statusFragment)
@@ -75,8 +78,8 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
                     true
                 }
                 R.id.settingsNavigationItem -> {
-                    showWillBeImplementedToast()
-                    false
+                    switchFragment(settingsFragment)
+                    true
                 }
                 else -> {
                     throw IllegalArgumentException("Unknown navigation item:" + item.title)

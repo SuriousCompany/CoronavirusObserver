@@ -19,4 +19,19 @@
     <string name="countries">Countries</string>
     <string name="news">News</string>
     <string name="map">Map</string>
+
+    <string name="version">Version: %s</string>
+    <string name="send_feedback">send feedback</string>
+    <string name="support_email">suriousSup@gmail.com</string>
+    <string name="coronavirus_observer_feedback">CoronavirusObserver feedback</string>
+    <string name="choose_email_client">Choose an Email client:</string>
+    <string name="developed_by_suriouscompany">Developed by SuriousCompany</string>
+    <string name="interval_description">The minimal application widget update interval is 30 minutes. It can be increased to save battery life.</string>
+    <string name="hours">hours.</string>
+    <string name="update_interval">Update interval</string>
+    <string name="minimal_interval">Minimal interval(30 minutes)</string>
+    <string name="feedback">Feedback</string>
+    <string name="coronavirusobserver_is_still_under_development">CoronavirusObserver is still under development, so we will be grateful for any feedback. Feel free to suggest improvements or write bug reports.</string>
+    <string name="about">About</string>
+    <string name="project_description">CoronavirusObserver is a non-profit application developed by Vsevolod Salenko as a part of SuriousCompany. Data source: Johns Hopkins CSSE. It takes data from WHO, CDC, ECDC, NHC and DXY and local media reports.</string>
 </resources>
