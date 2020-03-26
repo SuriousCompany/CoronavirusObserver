@@ -1,7 +1,7 @@
-package company.surious.coronavirusobserver.data.mappers
+package company.surious.coronavirusobserver.data.repositories.status.mappers
 
-import company.surious.coronavirusobserver.data.network.models.StatusFeature
-import company.surious.coronavirusobserver.data.network.models.StatusNetworkResponse
+import company.surious.coronavirusobserver.data.repositories.status.models.StatusFeature
+import company.surious.coronavirusobserver.data.repositories.status.models.StatusNetworkResponse
 import company.surious.coronavirusobserver.domain.entities.CountryStatusEntity
 import company.surious.coronavirusobserver.domain.entities.StatusEntity
 import company.surious.coronavirusobserver.domain.entities.extensions.calculateStatus

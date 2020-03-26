@@ -1,7 +1,8 @@
 package company.surious.coronavirusobserver.presentation.di
 
 import android.app.Application
-import company.surious.coronavirusobserver.data.di.DataManagersModule
+import company.surious.coronavirusobserver.data.network.RepositoriesModule
+import company.surious.coronavirusobserver.data.resources.ResourcesModule
 import company.surious.coronavirusobserver.presentation.core.CoronavirusApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -11,8 +12,8 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [AndroidInjectionModule::class, AppModule::class, DataManagersModule::class,
-        ActivityModule::class, FragmentModule::class, ServiceModule::class]
+    modules = [AndroidInjectionModule::class, AppModule::class, RepositoriesModule::class,
+        ActivityModule::class, FragmentModule::class, ServiceModule::class, ResourcesModule::class]
 )
 interface AppComponent {
 

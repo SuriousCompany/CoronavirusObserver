@@ -1,4 +1,4 @@
-package company.surious.coronavirusobserver.data.network.models
+package company.surious.coronavirusobserver.data.repositories.status.models
 
 import com.google.gson.annotations.SerializedName
 

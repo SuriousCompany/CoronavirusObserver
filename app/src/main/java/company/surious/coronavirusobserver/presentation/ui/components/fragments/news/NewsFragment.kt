@@ -1,27 +1,43 @@
 package company.surious.coronavirusobserver.presentation.ui.components.fragments.news
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.fragment.app.Fragment
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import company.surious.coronavirusobserver.R
+import company.surious.coronavirusobserver.databinding.FragmentNewsBinding
+import company.surious.coronavirusobserver.presentation.ui.base.ViewModelFactory
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_news.*
+import javax.inject.Inject
 
 
-class NewsFragment : Fragment() {
-    private val newsUrl = "https://www.nytimes.com/2020/02/13/world/asia/china-coronavirus.html"
+class NewsFragment : DaggerFragment() {
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var newsViewModel: NewsViewModel
+    private lateinit var binding: FragmentNewsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_news, container, false)
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initNewsWebView()
+        binding.lifecycleOwner = this
+        newsViewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
+        binding.newsState = newsViewModel.newsState
     }
 
     override fun onStart() {
@@ -39,14 +55,15 @@ class NewsFragment : Fragment() {
         newsWebView.webViewClient = null
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initNewsWebView() {
         with(newsWebView) {
             newsSwipeRefreshLayout.isRefreshing = true
-            loadUrl(newsUrl)
             newsSwipeRefreshLayout.setOnRefreshListener {
                 newsSwipeRefreshLayout.isRefreshing = true
                 reload()
             }
+            settings.javaScriptEnabled = true
         }
     }
 }

@@ -1,6 +1,6 @@
-package company.surious.coronavirusobserver.data.network
+package company.surious.coronavirusobserver.data.repositories.status
 
-import company.surious.coronavirusobserver.data.network.models.StatusNetworkResponse
+import company.surious.coronavirusobserver.data.repositories.status.models.StatusNetworkResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 

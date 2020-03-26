@@ -19,7 +19,6 @@ import javax.inject.Inject
 
 
 class StatusFragment : DaggerFragment() {
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var statusViewModel: StatusViewModel
