@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager
 import company.surious.coronavirusobserver.R
 import company.surious.coronavirusobserver.domain.entities.PatientState
 import company.surious.coronavirusobserver.presentation.ui.base.ViewModelFactory
+import company.surious.coronavirusobserver.presentation.ui.components.fragments.status.StatusState
 import company.surious.coronavirusobserver.presentation.ui.components.fragments.status.StatusViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_status_by_patients_state.*
@@ -25,6 +26,7 @@ class StatusByPatientsStateFragment : DaggerFragment() {
     private lateinit var statusViewModel: StatusViewModel
     private lateinit var statusCallback: Observable.OnPropertyChangedCallback
     private lateinit var adapter: StatusByPatientsStatePageAdapter
+    private lateinit var statusState: StatusState
     private var currentPatientState = PatientState.INFECTED
 
     override fun onCreateView(
@@ -37,6 +39,7 @@ class StatusByPatientsStateFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         statusViewModel = ViewModelProvider(this, viewModelFactory)[StatusViewModel::class.java]
+        statusState = statusViewModel.statusState
         adapter = StatusByPatientsStatePageAdapter(
             childFragmentManager,
             arrayOf(
@@ -59,11 +62,18 @@ class StatusByPatientsStateFragment : DaggerFragment() {
         super.onStart()
         statusCallback = object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                adapter.update(statusViewModel.statusState.statusEntity.get()!!)
+                adapter.update(statusState.statusEntity.get()!!)
             }
         }
-        statusViewModel.statusState.statusEntity.addOnPropertyChangedCallback(statusCallback)
+        statusState.statusEntity.addOnPropertyChangedCallback(statusCallback)
         updateState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (statusState.statusEntity.get() == null) {
+            statusViewModel.updateStatus()
+        }
     }
 
     private fun updateState() {
@@ -74,7 +84,7 @@ class StatusByPatientsStateFragment : DaggerFragment() {
 
     override fun onStop() {
         super.onStop()
-        statusViewModel.statusState.statusEntity.removeOnPropertyChangedCallback(statusCallback)
+        statusState.statusEntity.removeOnPropertyChangedCallback(statusCallback)
     }
 
     private fun setupPager() {

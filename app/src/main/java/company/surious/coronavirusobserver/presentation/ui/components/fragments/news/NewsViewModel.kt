@@ -12,7 +12,7 @@ class NewsViewModel @Inject constructor(private val getNewsLinkUseCase: GetNewsL
 
     val newsState = NewsState()
 
-    init {
+    fun updateUrl() {
         compositeDisposable.add(
             getNewsLinkUseCase.execute(null)
                 .subscribe(newsState.newsUrl::set, Crashlytics::logException)

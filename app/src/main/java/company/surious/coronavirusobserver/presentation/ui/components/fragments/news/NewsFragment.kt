@@ -23,6 +23,7 @@ class NewsFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var newsViewModel: NewsViewModel
     private lateinit var binding: FragmentNewsBinding
+    private lateinit var newsState: NewsState
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +38,8 @@ class NewsFragment : DaggerFragment() {
         initNewsWebView()
         binding.lifecycleOwner = this
         newsViewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
-        binding.newsState = newsViewModel.newsState
+        newsState = newsViewModel.newsState
+        binding.newsState = newsState
     }
 
     override fun onStart() {
@@ -47,6 +49,13 @@ class NewsFragment : DaggerFragment() {
                 super.onPageFinished(view, url)
                 newsSwipeRefreshLayout.isRefreshing = false
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (newsState.newsUrl.get() == null) {
+            newsViewModel.updateUrl()
         }
     }
 

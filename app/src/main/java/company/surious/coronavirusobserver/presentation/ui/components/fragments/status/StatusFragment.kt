@@ -41,6 +41,13 @@ class StatusFragment : DaggerFragment() {
         initView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (statusState.statusEntity.get() == null) {
+            statusViewModel.updateStatus()
+        }
+    }
+
     private fun initView() {
         statusViewModel = ViewModelProvider(this, viewModelFactory)[StatusViewModel::class.java]
         statusState = statusViewModel.statusState

@@ -15,10 +15,6 @@ class StatusViewModel @Inject constructor(
 
     val statusState = StatusState()
 
-    init {
-        updateStatus()
-    }
-
     fun updateStatus() {
         statusState.isLoading.set(true)
         compositeDisposable.add(
@@ -34,8 +30,8 @@ class StatusViewModel @Inject constructor(
             dead.set(status.totalDead)
             infected.set(status.totalInfected)
             recovered.set(status.totalRecovered)
-            isLoading.set(false)
             statusEntity.set(status)
+            isLoading.set(false)
         }
     }
 
