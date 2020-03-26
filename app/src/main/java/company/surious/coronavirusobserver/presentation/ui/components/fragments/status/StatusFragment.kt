@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import company.surious.coronavirusobserver.R
 import company.surious.coronavirusobserver.databinding.FragmentStatusBinding
 import company.surious.coronavirusobserver.domain.entities.PatientState
-import company.surious.coronavirusobserver.domain.entities.StatusEntity
 import company.surious.coronavirusobserver.presentation.ui.base.ViewModelFactory
 import company.surious.coronavirusobserver.presentation.ui.components.activities.main.NavigationProvider
 import company.surious.coronavirusobserver.presentation.ui.components.widget.WidgetUtils
@@ -25,7 +24,7 @@ class StatusFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var statusViewModel: StatusViewModel
     private lateinit var binding: FragmentStatusBinding
-    private lateinit var displayingStatusEntity: StatusEntity
+    private lateinit var statusState: StatusState
     private lateinit var navigationProvider: NavigationProvider
 
     override fun onCreateView(
@@ -45,17 +44,38 @@ class StatusFragment : DaggerFragment() {
 
     private fun initView() {
         statusViewModel = ViewModelProvider(this, viewModelFactory)[StatusViewModel::class.java]
+        statusState = statusViewModel.statusState
+        initBinding()
+        initStateListeners()
+    }
+
+    private fun initBinding() {
         binding.eventHandler = StatusEventHandler()
         binding.stateModel = statusViewModel.statusState
         binding.lifecycleOwner = this
-        statusViewModel.statusState.statusEntity.addOnPropertyChangedCallback(object :
+    }
+
+    private fun initStateListeners() {
+        statusState.statusEntity.addOnPropertyChangedCallback(object :
             Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                val status = statusViewModel.statusState.statusEntity.get()!!
-                displayingStatusEntity = status
-                WidgetUtils.updateWidget(requireActivity(), status)
-            }
+                val status = statusState.statusEntity.get()
+                if (status != null) {
+                    WidgetUtils.updateWidget(requireActivity(), status)
+                }
 
+            }
+        })
+        statusState.isLoading.addOnPropertyChangedCallback(object :
+            Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                val isLoading = statusState.isLoading.get()
+                if (isLoading) {
+                    navigationProvider.disableBottomNavigation()
+                } else {
+                    navigationProvider.enableBottomNavigation()
+                }
+            }
         })
     }
 

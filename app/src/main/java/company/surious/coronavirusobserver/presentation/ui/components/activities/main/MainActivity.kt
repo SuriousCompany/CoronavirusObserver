@@ -2,6 +2,7 @@ package company.surious.coronavirusobserver.presentation.ui.components.activitie
 
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import company.surious.coronavirusobserver.R
 import company.surious.coronavirusobserver.domain.entities.PatientState
@@ -106,6 +107,18 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
         disableNavigationListener()
         bottomNavigationView.selectedItemId = R.id.countriesNavigationItem
         enableNavigationListener()
+    }
+
+    override fun disableBottomNavigation() {
+        bottomNavigationView.menu.forEach {
+            it.isEnabled = false
+        }
+    }
+
+    override fun enableBottomNavigation() {
+        bottomNavigationView.menu.forEach {
+            it.isEnabled = true
+        }
     }
 
     override fun onBackPressed() {

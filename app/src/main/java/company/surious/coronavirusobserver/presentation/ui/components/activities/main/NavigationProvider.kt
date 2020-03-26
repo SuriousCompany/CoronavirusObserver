@@ -4,4 +4,8 @@ import company.surious.coronavirusobserver.domain.entities.PatientState
 
 interface NavigationProvider {
     fun showCountriesFragment(patientState: PatientState)
+
+    fun disableBottomNavigation()
+
+    fun enableBottomNavigation()
 }

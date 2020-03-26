@@ -27,7 +27,8 @@
                 android:id="@+id/statusContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:visibility="@{!stateModel.isLoading}">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/infectedCardView"
@@ -106,8 +107,8 @@
                             android:id="@+id/deathsLabelTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_marginTop="16dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
                             android:gravity="center"
                             android:text="@string/total_deaths"
                             android:textColor="@color/colorRed"
@@ -159,8 +160,8 @@
                             android:id="@+id/recoveredLabelTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/total_recovered"
@@ -191,11 +192,11 @@
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <FrameLayout
+            <ProgressBar
                 android:id="@+id/statusProgressBarContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#4DFFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:visibility="@{stateModel.isLoading}" />
         </FrameLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
