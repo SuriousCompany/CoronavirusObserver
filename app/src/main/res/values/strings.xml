@@ -33,4 +33,5 @@
     <string name="about">About</string>
     <string name="project_description">CoronavirusObserver is a non-profit application developed by Vsevolod Salenko as a part of SuriousCompany. Data source: Johns Hopkins CSSE. It takes data from WHO, CDC, ECDC, NHC and DXY and local media reports.</string>
     <string name="default_news_url">https://edition.cnn.com/search?q=coronavirus</string>
+    <string name="no_network_connection">No network connection</string>
 </resources>

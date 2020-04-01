@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".presentation.ui.components.activities.main.MainActivity">
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/mainNavigationContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
