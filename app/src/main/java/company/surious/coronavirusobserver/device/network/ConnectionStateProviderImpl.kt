@@ -4,13 +4,10 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.os.Build
-import androidx.annotation.RequiresApi
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.BehaviorSubject
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class ConnectionStateProviderImpl(private val connectivityManager: ConnectivityManager) :
     ConnectionStateProvider {
 
