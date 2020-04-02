@@ -7,6 +7,7 @@ import company.surious.coronavirusobserver.data.repositories.status.ArcgisRetrof
 import company.surious.coronavirusobserver.data.repositories.status.CoronovirusApi
 import company.surious.coronavirusobserver.data.repositories.status.StatusRepositoryImpl
 import company.surious.coronavirusobserver.data.resources.ResourcesModule
+import company.surious.coronavirusobserver.device.network.ConnectionStateProvider
 import company.surious.coronavirusobserver.domain.repositories.NewsRepository
 import company.surious.coronavirusobserver.domain.repositories.StatusRepository
 import dagger.Module
@@ -47,7 +48,8 @@ object RepositoriesModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun provideReportsRepository(api: CoronovirusApi): StatusRepository = StatusRepositoryImpl(api)
+    fun provideNetworkRequestWrapper(provider: ConnectionStateProvider): NetworkRequestWrapper =
+        NetworkRequestWrapper(provider)
 
     @Provides
     @Singleton
@@ -56,4 +58,12 @@ object RepositoriesModule {
         api: CnnApi,
         @Named(ResourcesModule.DEFAULT_NEWS_URL) defaultNewsLink: String
     ): NewsRepository = NewsRepositoryImpl(api, defaultNewsLink)
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideReportsRepository(
+        api: CoronovirusApi,
+        networkRequestWrapper: NetworkRequestWrapper
+    ): StatusRepository = StatusRepositoryImpl(api, networkRequestWrapper)
 }

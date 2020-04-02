@@ -5,7 +5,6 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.BehaviorSubject
 
 class ConnectionStateProviderImpl(private val connectivityManager: ConnectivityManager) :
@@ -43,6 +42,5 @@ class ConnectionStateProviderImpl(private val connectivityManager: ConnectivityM
     }
 
 
-    override fun observeInternetConnection(): Observable<Boolean> =
-        networkStatePublishSubject.observeOn(AndroidSchedulers.mainThread())
+    override fun observeInternetConnection(): Observable<Boolean> = networkStatePublishSubject
 }

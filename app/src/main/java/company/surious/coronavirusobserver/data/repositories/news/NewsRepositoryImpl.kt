@@ -27,7 +27,7 @@ class NewsRepositoryImpl(
         }
 
     private fun assembleLink(day: String, month: String, year: String) =
-        "https://edition.cnn.com/world/live-news/coronavirus-outbreak-$month-$day-$year-intl-hnk/index.html"
+        "https://edition.cnn.com/world/live-news/coronavirus-pandemic-$month-$day-$year-intl/index.html"
 
     private fun format(number: Int) =
         if (number < 10) {

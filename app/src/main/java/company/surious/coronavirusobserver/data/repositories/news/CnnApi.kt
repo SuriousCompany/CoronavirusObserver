@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface CnnApi {
-    @GET("world/live-news/coronavirus-outbreak-{month}-{day}-{year}-intl-hnk/index.html")
+    @GET("world/live-news/coronavirus-pandemic-{month}-{day}-{year}-intl/index.html")
     fun getNewsPage(
         @Path("year") year: String,
         @Path("month") month: String,
