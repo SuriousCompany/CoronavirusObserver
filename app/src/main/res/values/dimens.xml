@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="labelSmallFontSize">24sp</dimen>
+    <dimen name="labelMediumFontSize">36sp</dimen>
+
+    <dimen name="numberSmallFontSize">50sp</dimen>
+    <dimen name="numberBigFontSize">100sp</dimen>
+
+    <dimen name="listItemSmallFontSize">18sp</dimen>
+    <dimen name="listItemBigFontSize">24sp</dimen>
+
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widgetNumberBigFontSize">24sp</dimen>
+    <dimen name="widgetNumberSmallFontSize">16sp</dimen>
+</resources>

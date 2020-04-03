@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="eventsHandler"
+            type="company.surious.coronavirusobserver.presentation.ui.components.fragments.settings.SettingsFragment.SettingsEventsHandler" />
+
+        <import type="company.surious.coronavirusobserver.BuildConfig" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".presentation.ui.components.fragments.settings.SettingsFragment">
+
+            <TextView
+                android:id="@+id/updateIntervalTitleTextView"
+                style="@style/AppTheme.SettingsTitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/update_interval"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/intervalDescriptionTextView"
+                style="@style/AppTheme.SettingsDescriptionTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/interval_description"
+                android:textColor="@color/colorDisabledGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/updateIntervalTitleTextView" />
+
+            <Switch
+                android:id="@+id/widgetIntervalTypeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:enabled="false"
+                android:thumb="@drawable/switch_thumb"
+                android:thumbTint="@color/colorDisabledGray"
+                android:track="@drawable/switch_track"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/intervalDescriptionTextView" />
+
+            <TextView
+                android:id="@+id/currentUpdateIntervalTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="@string/minimal_interval"
+                android:textColor="@color/colorDisabledGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/widgetIntervalTypeSwitch" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{()->eventsHandler.onUpdateIntervalSectionClicked()}"
+                app:layout_constraintBottom_toTopOf="@id/feedbackTitleTextView"
+                app:layout_constraintEnd_toEndOf="@id/updateIntervalTitleTextView"
+                app:layout_constraintStart_toStartOf="@id/updateIntervalTitleTextView"
+                app:layout_constraintTop_toTopOf="@id/updateIntervalTitleTextView" />
+
+            <TextView
+                android:id="@+id/feedbackTitleTextView"
+                style="@style/AppTheme.SettingsTitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/feedback"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/currentUpdateIntervalTextView" />
+
+            <TextView
+                android:id="@+id/feedbackDescriptionTextView"
+                style="@style/AppTheme.SettingsDescriptionTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/coronavirusobserver_is_still_under_development"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/feedbackTitleTextView" />
+
+            <Button
+                android:id="@+id/sendFeedbackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorWhite"
+                android:onClick="@{()->eventsHandler.onSendFeedbackClick()}"
+                android:paddingHorizontal="16dp"
+                android:text="@string/send_feedback"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/feedbackDescriptionTextView" />
+
+            <TextView
+                android:id="@+id/aboutTitleTextView"
+                style="@style/AppTheme.SettingsTitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/about"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sendFeedbackButton" />
+
+            <TextView
+                android:id="@+id/aboutProjectTextView"
+                style="@style/AppTheme.SettingsDescriptionTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/project_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aboutTitleTextView" />
+
+            <TextView
+                android:id="@+id/versionTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@{String.format(@string/version, BuildConfig.VERSION_NAME)}"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aboutProjectTextView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">CoronavirusObserver</string>
+    <string name="total_deaths">Deaths</string>
+    <string name="total_confirmed">Confirmed</string>
+    <string name="total_recovered">Recovered</string>
+    <string name="zero">0</string>
+    <string name="update">update</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="dead">Dead</string>
+    <string name="recovered">Recovered</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="updating_application_widget">Updating application widget</string>
+    <string name="main_screen">Main screen</string>
+    <string name="settings">Settings</string>
+    <string name="will_be_implemented">It will be implemented in the next version</string>
+    <string name="countries">Countries</string>
+    <string name="news">News</string>
+    <string name="map">Map</string>
+    <string name="version">Version: %s</string>
+    <string name="send_feedback">send feedback</string>
+    <string name="support_email">suriousSup@gmail.com</string>
+    <string name="coronavirus_observer_feedback">CoronavirusObserver feedback</string>
+    <string name="choose_email_client">Choose an Email client:</string>
+    <string name="developed_by_suriouscompany">Developed by SuriousCompany</string>
+    <string name="interval_description">The minimal application widget update interval is 30 minutes. It can be increased to save battery life.</string>
+    <string name="hours">hours.</string>
+    <string name="update_interval">Update interval</string>
+    <string name="minimal_interval">Minimal interval(30 minutes)</string>
+    <string name="feedback">Feedback</string>
+    <string name="coronavirusobserver_is_still_under_development">CoronavirusObserver is still under development, so we will be grateful for any feedback. Feel free to suggest improvements or write bug reports.</string>
+    <string name="about">About</string>
+    <string name="project_description">CoronavirusObserver is a non-profit application developed by Vsevolod Salenko as a part of SuriousCompany. Data source: Johns Hopkins CSSE. It takes data from WHO, CDC, ECDC, NHC and DXY and local media reports.</string>
+    <string name="default_news_url">https://edition.cnn.com/search?q=coronavirus</string>
+    <string name="no_network_connection">No network connection</string>
+</resources>

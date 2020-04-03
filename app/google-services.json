@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1008495288070",
+    "firebase_url": "https://coronairusobserver.firebaseio.com",
+    "project_id": "coronairusobserver",
+    "storage_bucket": "coronairusobserver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008495288070:android:acfedb936e4ba48c5fc887",
+        "android_client_info": {
+          "package_name": "company.surious.coronavirusobserver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008495288070-b7dn9hf6lriengua2tro6u7j6blo856o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWQzV5qe4gPXMtrO59s1Io48EPBcs-4UI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008495288070-b7dn9hf6lriengua2tro6u7j6blo856o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
