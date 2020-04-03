@@ -6,6 +6,14 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('corona_keystore.jks')
+            storePassword 'qrYKQO2IunROMB96Ui'
+            keyAlias = 'corona'
+            keyPassword 'sUVK8VW5aMEiHlZKPo'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "company.surious.coronavirusobserver"
@@ -17,6 +25,7 @@ android {
         buildConfigField "String", "ARCGIS_URL", '"https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/"'
         buildConfigField "String", "CNN_URL", '"https://edition.cnn.com/"'
         multiDexEnabled true
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {

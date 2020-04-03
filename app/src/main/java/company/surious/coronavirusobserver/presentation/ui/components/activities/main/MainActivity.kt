@@ -27,7 +27,7 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
     private val statusFragment = StatusFragment()
     private val newsFragment = NewsFragment()
     private val settingsFragment = SettingsFragment()
-    private lateinit var displayingFragment: Fragment
+    private var displayingFragment: Fragment? = null
     private lateinit var networkStateDelegate: NetworkStateSnackbarDelegate
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,8 +61,8 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
             supportFragmentManager.beginTransaction()
                 .add(R.id.mainNavigationContainer, statusFragment)
                 .commit()
-            displayingFragment = statusFragment
         }
+        switchFragment(statusFragment)
     }
 
     private fun initNavigationView() {
@@ -118,10 +118,12 @@ class MainActivity : DaggerAppCompatActivity(), NavigationProvider {
     }
 
     private fun switchFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .hide(displayingFragment)
-            .show(fragment)
-            .commit()
+        displayingFragment?.let {
+            supportFragmentManager.beginTransaction()
+                .hide(it)
+                .show(fragment)
+                .commit()
+        }
         displayingFragment = fragment
     }
 
