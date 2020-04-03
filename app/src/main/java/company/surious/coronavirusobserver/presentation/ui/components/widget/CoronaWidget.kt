@@ -12,6 +12,7 @@ import company.surious.coronavirusobserver.R
 import company.surious.coronavirusobserver.domain.entities.StatusEntity
 import company.surious.coronavirusobserver.presentation.ui.components.activities.main.MainActivity
 import company.surious.coronavirusobserver.presentation.ui.components.services.update_status_service.StatusService
+import company.surious.coronavirusobserver.presentation.utils.TextUtils
 
 
 class CoronaWidget : AppWidgetProvider() {
@@ -80,12 +81,12 @@ class CoronaWidget : AppWidgetProvider() {
                 PendingIntent.getActivity(context, 0, intent, 0)
             }
         val views = RemoteViews(context.packageName, R.layout.corona_widget).apply {
-            setTextViewText(R.id.confirmedWidgetTextView, status.totalInfected.toString())
-            setTextViewText(R.id.deadWidgetTextView, status.totalDead.toString())
-            setTextViewText(
-                R.id.recoveredWidgetTextView,
-                status.totalRecovered.toString()
-            )
+            val confirmed = TextUtils.addNumberDots(status.totalInfected.toString())
+            val dead = TextUtils.addNumberDots(status.totalDead.toString())
+            val recovered = TextUtils.addNumberDots(status.totalRecovered.toString())
+            setTextViewText(R.id.confirmedWidgetTextView, confirmed)
+            setTextViewText(R.id.deadWidgetTextView, dead)
+            setTextViewText(R.id.recoveredWidgetTextView, recovered)
             setOnClickPendingIntent(R.id.widgetRoot, pendingIntent)
         }
         appWidgetManager.updateAppWidget(appWidgetId, views)
